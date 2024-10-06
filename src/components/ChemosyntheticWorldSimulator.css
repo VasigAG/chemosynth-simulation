@@ -1,0 +1,88 @@
+/* General Styles */
+body {
+    background-color: #121212; /* dark background */
+    color: #e0e0e0; /* light text for contrast */
+    font-family: 'Courier New', monospace; /* monospace font */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* glowing effect */
+}
+
+/* Tab Button Styles */
+button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #e0e0e0; /* button text color */
+    font-size: 1rem; /* button text size */
+    padding: 10px 15px; /* padding for buttons */
+}
+
+button:hover {
+    background-color: #3f51b5; /* hover effect */
+}
+
+/* Active Tab Styles */
+.bg-blue-500 {
+    background-color: #3f51b5; /* active tab color */
+}
+
+.text-white {
+    color: white; /* active tab text color */
+}
+
+/* Inactive Tab Styles */
+.bg-gray-200 {
+    background-color: #424242; /* inactive tab color */
+}
+
+/* Tab Container Styles */
+.mb-4 {
+    display: flex;
+    justify-content: center; /* center tabs */
+    margin-bottom: 1rem;
+}
+
+/* Content Container Styles */
+div {
+    padding: 1rem;
+    background-color: #1e1e1e; /* darker content background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* shadow for depth */
+}
+
+/* Simulation Controls */
+.simulation-controls {
+    display: flex;
+    justify-content: space-between; /* space between controls */
+    margin: 1rem 0;
+}
+
+/* Tab Content Styles */
+.tab-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #252525; /* background for content */
+    border-radius: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* smaller header on mobile */
+    }
+
+    button {
+        width: 100%; /* full-width buttons on mobile */
+        margin-bottom: 0.5rem; /* spacing between buttons */
+        font-size: 1rem; /* ensure font size is readable */
+    }
+}
