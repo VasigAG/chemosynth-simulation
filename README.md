@@ -1,5 +1,5 @@
 ## Submitted to NASA Space Apps Challenge
-## 2024 Global Nominee
+**2024 Global Nominee**
 
 ## Project website:
 https://www.spaceappschallenge.org/nasa-space-apps-2024/find-a-team/chemical-cellular-automata/?tab=project
