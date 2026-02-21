@@ -1,88 +1,176 @@
-/* General Styles */
+:root {
+  --bg: #05070f;
+  --panel: rgba(17, 24, 39, 0.7);
+  --panel-border: rgba(122, 162, 255, 0.24);
+  --text: #d9e7ff;
+  --muted: #90a5d1;
+  --accent: #5da7ff;
+  --accent-2: #7af0ce;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #121212; /* dark background */
-    color: #e0e0e0; /* light text for contrast */
-    font-family: 'Courier New', monospace; /* monospace font */
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(93, 167, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(122, 240, 206, 0.14), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, 'Segoe UI', sans-serif;
 }
 
-/* Header Styles */
-h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* glowing effect */
+.App {
+  min-height: 100vh;
+  padding: 24px;
 }
 
-/* Tab Button Styles */
-button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: #e0e0e0; /* button text color */
-    font-size: 1rem; /* button text size */
-    padding: 10px 15px; /* padding for buttons */
+.sim-root {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-button:hover {
-    background-color: #3f51b5; /* hover effect */
+.sim-title {
+  margin: 0 0 16px;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 24px rgba(93, 167, 255, 0.5);
 }
 
-/* Active Tab Styles */
-.bg-blue-500 {
-    background-color: #3f51b5; /* active tab color */
+.tab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.text-white {
-    color: white; /* active tab text color */
+.tab-btn {
+  background: rgba(8, 14, 28, 0.8);
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
 }
 
-/* Inactive Tab Styles */
-.bg-gray-200 {
-    background-color: #424242; /* inactive tab color */
+.tab-btn.active {
+  background: linear-gradient(130deg, var(--accent), #7a6dff);
+  color: #fff;
+  border-color: transparent;
 }
 
-/* Tab Container Styles */
-.mb-4 {
-    display: flex;
-    justify-content: center; /* center tabs */
-    margin-bottom: 1rem;
+.glass-panel,
+.border.rounded-lg,
+.bg-white.shadow.rounded {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  color: var(--text);
 }
 
-/* Content Container Styles */
-div {
-    padding: 1rem;
-    background-color: #1e1e1e; /* darker content background */
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* shadow for depth */
+.section-title,
+.text-xl.font-semibold {
+  margin-top: 0;
+  color: #f5f8ff;
 }
 
-/* Simulation Controls */
-.simulation-controls {
-    display: flex;
-    justify-content: space-between; /* space between controls */
-    margin: 1rem 0;
+p, li, span, div {
+  color: var(--text);
 }
 
-/* Tab Content Styles */
-.tab-content {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: #252525; /* background for content */
-    border-radius: 10px;
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem; /* smaller header on mobile */
-    }
+.scene-panel {
+  min-height: 280px;
+}
 
-    button {
-        width: 100%; /* full-width buttons on mobile */
-        margin-bottom: 0.5rem; /* spacing between buttons */
-        font-size: 1rem; /* ensure font size is readable */
-    }
+.world-scene {
+  position: relative;
+  margin: 12px auto 0;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: floatWorld 8s ease-in-out infinite;
+}
+
+.nebula-glow {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(93, 167, 255, 0.26), transparent 70%);
+  filter: blur(6px);
+}
+
+.planet-core {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 28%, #96e8ff, #2462a5 58%, #13233a 100%);
+  box-shadow: inset -22px -24px 38px rgba(0, 0, 0, 0.45), 0 0 28px rgba(93, 167, 255, 0.5);
+}
+
+.planet-haze {
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(159, 224, 255, 0.3);
+}
+
+.orbiter-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: calc(var(--size, 0px) / -2);
+  margin-top: calc(var(--size, 0px) / -2);
+  border: 1px dashed rgba(164, 196, 255, 0.25);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit linear infinite;
+}
+
+.orbiter-dot {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.vent {
+  position: absolute;
+  bottom: 34px;
+  width: 8px;
+  height: 38px;
+  border-radius: 8px;
+  background: linear-gradient(to top, rgba(122, 240, 206, 0.65), transparent);
+  animation: plume 3s ease-in-out infinite;
+}
+
+.vent-a { left: 90px; }
+.vent-b { left: 112px; animation-delay: 0.4s; }
+.vent-c { left: 132px; animation-delay: 0.8s; }
+
+@keyframes orbit {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes floatWorld {
+  0%, 100% { transform: translateY(0) rotateX(8deg); }
+  50% { transform: translateY(-10px) rotateX(12deg); }
+}
+
+@keyframes plume {
+  0%, 100% { opacity: 0.25; transform: translateY(4px) scaleY(0.8); }
+  50% { opacity: 0.9; transform: translateY(-6px) scaleY(1.2); }
 }

@@ -31,9 +31,9 @@ const computeActivationEnergy = (pathway, minerals) => {
 };
 
 // Function to calculate the reaction rate based on pathway, temperature
-const calculateReactionRate = (pathway, temperature) => {
+const calculateReactionRate = (pathway, temperature, minerals) => {
     const T = temperature + 273.15; // Convert to Kelvin
-    const Ea = computeActivationEnergy(pathway, {}); // No minerals needed here
+    const Ea = computeActivationEnergy(pathway, minerals);
     return Math.exp(-Ea / (R * T));
 };
 
@@ -45,7 +45,7 @@ const calculateEnergyYield = (pathway, reactionRate) => {
 
 // Function to get pathway efficiency based on environmental conditions
 export const getPathwayEfficiency = (pathway, conditions) => {
-    const { temperature, pressure } = conditions;
+    const { temperature, pressure, minerals = {} } = conditions;
     const pathwayInfo = chemosynthesisPathways[pathway];
 
     // Calculate base efficiency from environmental conditions
@@ -53,7 +53,7 @@ export const getPathwayEfficiency = (pathway, conditions) => {
                           (pathwayInfo.environmentalImpact.pressure || 0) * ((pressure - 50) / 50);
 
     // Calculate reaction rate and energy yield
-    const reactionRate = calculateReactionRate(pathway, temperature);
+    const reactionRate = calculateReactionRate(pathway, temperature, minerals);
     const energyYield = calculateEnergyYield(pathway, reactionRate);
 
     return baseEfficiency * energyYield; // Return efficiency based on environmental factors and yield
