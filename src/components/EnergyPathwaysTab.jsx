@@ -68,7 +68,7 @@ const EnergyCalculator = ({ organisms }) => {
         }));
 
         return (
-          <div key={organism.id} className="mt-6">
+          <div key={organism.name} className="mt-6">
             <h2 className="text-xl font-semibold mb-2">{organism.name} Energy Details</h2>
             <p>Type: {organism.type} ({organismTypes[organism.type].trophicLevel})</p>
             <p>Region: {organism.region}</p>

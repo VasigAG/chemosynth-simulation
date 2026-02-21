@@ -1,25 +1,31 @@
-// src/components/OverviewTab.jsx
 import React from 'react';
 import WorldDiagram from './WorldDiagram';
+import AnimatedWorldScene from './AnimatedWorldScene';
 
 const OverviewTab = () => {
   return (
-    <div className="border rounded-lg p-4 shadow"> {/* Replacing Card */}
-      <header>
-        <h2 className="text-xl font-semibold">World Overview</h2>
-      </header>
-      <div className="mt-2"> {/* Replacing CardContent */}
+    <div className="overview-grid">
+      <section className="glass-panel">
+        <h2 className="section-title">World Overview</h2>
         <p>
-          This chemosynthetic world is divided into three main regions, each hosting a unique ecosystem of organisms that have adapted to their specific environmental conditions.
+          This biosphere is driven by chemical energy gradients around hydrothermal vents, high-pressure trenches,
+          and mineral-rich plumes. Organisms continuously adapt their pathways as conditions shift.
         </p>
-        <p className="mt-2">
-          The world features a complex food web with producers, consumers, apex predators, and decomposers. Energy flows through various chemosynthetic pathways, supporting life in this alien environment.
+        <p>
+          Population growth now responds to local habitability, resource pressure, and prey support, creating
+          more stable long-term ecosystem dynamics.
         </p>
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold mb-2">World Diagram</h3>
-          <WorldDiagram />
-        </div>
-      </div>
+      </section>
+
+      <section className="glass-panel scene-panel">
+        <h3 className="section-title">Living Planet</h3>
+        <AnimatedWorldScene />
+      </section>
+
+      <section className="glass-panel">
+        <h3 className="section-title">Biome Layout</h3>
+        <WorldDiagram />
+      </section>
     </div>
   );
 };
