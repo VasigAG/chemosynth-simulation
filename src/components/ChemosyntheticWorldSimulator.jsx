@@ -30,6 +30,7 @@ const ChemosyntheticWorldSimulator = () => {
 
   const runSimulation = useCallback(() => {
     const { newPopulations, updatedOrganisms } = simulateGeneration(organisms, populations, planetaryConditions);
+
     setPopulations(newPopulations);
     setOrganisms(updatedOrganisms);
     setTimeStep(prev => prev + 1);
@@ -52,10 +53,20 @@ const ChemosyntheticWorldSimulator = () => {
   }, [isRunning, runSimulation]);
 
   useEffect(() => {
-    setSimulationData(prev => [...prev, { timeStep, ...populations, ...planetaryConditions }]);
-  }, [timeStep, populations, planetaryConditions]);
-
-  const toggleSimulation = () => setIsRunning(!isRunning);
+    const ecosystemEnergy = calculateEcosystemEnergy(organisms, populations, planetaryConditions);
+    setSimulationData(prev => [
+      ...prev,
+      {
+        timeStep,
+        ...populations,
+        temperature: planetaryConditions.temperature,
+        pressure: planetaryConditions.pressure,
+        pH: planetaryConditions.pH,
+        dissolved_oxygen: planetaryConditions.dissolved_oxygen,
+        ecosystemEnergy,
+      },
+    ]);
+  }, [timeStep, organisms, populations, planetaryConditions]);
 
   const resetSimulation = () => {
     setOrganisms(initialOrganisms);
