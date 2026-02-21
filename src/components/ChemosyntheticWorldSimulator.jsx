@@ -18,7 +18,6 @@ import {
   initialOrganisms,
   initialPopulations,
   initialPlanetaryConditions,
-  organismTypes,
   chemosynthesisPathways,
 } from '../utils/constants';
 import {
