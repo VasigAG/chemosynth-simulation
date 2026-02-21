@@ -1,88 +1,158 @@
-/* General Styles */
+:root {
+  --bg: #05070f;
+  --panel: rgba(17, 24, 39, 0.72);
+  --panel-border: rgba(122, 162, 255, 0.24);
+  --text: #d9e7ff;
+  --accent: #5da7ff;
+  --accent-2: #7af0ce;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #121212; /* dark background */
-    color: #e0e0e0; /* light text for contrast */
-    font-family: 'Courier New', monospace; /* monospace font */
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(93, 167, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(122, 240, 206, 0.14), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, 'Segoe UI', sans-serif;
 }
 
-/* Header Styles */
-h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* glowing effect */
+.App {
+  min-height: 100vh;
+  padding: 24px;
 }
 
-/* Tab Button Styles */
-button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: #e0e0e0; /* button text color */
-    font-size: 1rem; /* button text size */
-    padding: 10px 15px; /* padding for buttons */
+.sim-root {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-button:hover {
-    background-color: #3f51b5; /* hover effect */
+.one-page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* Active Tab Styles */
-.bg-blue-500 {
-    background-color: #3f51b5; /* active tab color */
+.glass-panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
-.text-white {
-    color: white; /* active tab text color */
+.hero {
+  padding: 20px;
 }
 
-/* Inactive Tab Styles */
-.bg-gray-200 {
-    background-color: #424242; /* inactive tab color */
+.sim-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  text-align: center;
+  text-shadow: 0 0 24px rgba(93, 167, 255, 0.5);
 }
 
-/* Tab Container Styles */
-.mb-4 {
-    display: flex;
-    justify-content: center; /* center tabs */
-    margin-bottom: 1rem;
+.hero-text {
+  text-align: center;
+  color: #b8c8ea;
+  margin-top: 8px;
 }
 
-/* Content Container Styles */
-div {
-    padding: 1rem;
-    background-color: #1e1e1e; /* darker content background */
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* shadow for depth */
+.section-block {
+  padding: 18px;
 }
 
-/* Simulation Controls */
-.simulation-controls {
-    display: flex;
-    justify-content: space-between; /* space between controls */
-    margin: 1rem 0;
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-/* Tab Content Styles */
-.tab-content {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: #252525; /* background for content */
-    border-radius: 10px;
+.section-title {
+  margin: 0 0 12px;
 }
 
-/* Responsive Styles */
+.overview-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(140px, 220px);
+  gap: 16px;
+  align-items: center;
+}
+
+.controls-row {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: rgba(8, 14, 28, 0.8);
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: linear-gradient(130deg, var(--accent), #7a6dff);
+  border-color: transparent;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 14px;
+}
+
+.chart-card {
+  background: rgba(8, 14, 28, 0.55);
+  border: 1px solid rgba(120, 150, 220, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.chart-card h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.condition-slider {
+  background: rgba(8, 14, 28, 0.5);
+  border: 1px solid rgba(120, 150, 220, 0.26);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.condition-slider label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.condition-slider input {
+  width: 100%;
+  accent-color: var(--accent-2);
+}
+
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem; /* smaller header on mobile */
-    }
+  .App {
+    padding: 12px;
+  }
 
-    button {
-        width: 100%; /* full-width buttons on mobile */
-        margin-bottom: 0.5rem; /* spacing between buttons */
-        font-size: 1rem; /* ensure font size is readable */
-    }
+  .overview-row {
+    grid-template-columns: 1fr;
+  }
 }
